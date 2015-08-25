@@ -21,6 +21,7 @@ namespace DataAccess
     
         public int ID { get; set; }
         public string Name { get; set; }
+    
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }

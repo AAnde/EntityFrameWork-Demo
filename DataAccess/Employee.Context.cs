@@ -12,6 +12,8 @@ namespace DataAccess
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class EmployeeDBEntities : DbContext
     {
@@ -27,5 +29,84 @@ namespace DataAccess
     
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+    
+        public virtual int spAddEmployee(string name, Nullable<System.DateTime> joinDate, Nullable<int> salary, Nullable<int> departmentId)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var joinDateParameter = joinDate.HasValue ?
+                new ObjectParameter("joinDate", joinDate) :
+                new ObjectParameter("joinDate", typeof(System.DateTime));
+    
+            var salaryParameter = salary.HasValue ?
+                new ObjectParameter("salary", salary) :
+                new ObjectParameter("salary", typeof(int));
+    
+            var departmentIdParameter = departmentId.HasValue ?
+                new ObjectParameter("departmentId", departmentId) :
+                new ObjectParameter("departmentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAddEmployee", nameParameter, joinDateParameter, salaryParameter, departmentIdParameter);
+        }
+    
+        public virtual int spDeleteEmployee(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spDeleteEmployee", idParameter);
+        }
+    
+        public virtual int spGetDepartments()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spGetDepartments");
+        }
+    
+        public virtual ObjectResult<spGetEmployees_Result> spGetEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetEmployees_Result>("spGetEmployees");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spGetUniqueId()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spGetUniqueId");
+        }
+    
+        public virtual int spUpdateEmployee(Nullable<int> id, string name, Nullable<System.DateTime> joinDate, Nullable<int> salary, Nullable<int> departmentId)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var joinDateParameter = joinDate.HasValue ?
+                new ObjectParameter("joinDate", joinDate) :
+                new ObjectParameter("joinDate", typeof(System.DateTime));
+    
+            var salaryParameter = salary.HasValue ?
+                new ObjectParameter("salary", salary) :
+                new ObjectParameter("salary", typeof(int));
+    
+            var departmentIdParameter = departmentId.HasValue ?
+                new ObjectParameter("departmentId", departmentId) :
+                new ObjectParameter("departmentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUpdateEmployee", idParameter, nameParameter, joinDateParameter, salaryParameter, departmentIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spGetUniqueId1(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spGetUniqueId1", idParameter);
+        }
     }
 }

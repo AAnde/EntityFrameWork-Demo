@@ -17,9 +17,9 @@ namespace EntityPractice
             Console.WriteLine("Main started...");
             //Console.WriteLine("Enter Id to delete a record...");
             //int id = Convert.ToInt32(Console.ReadLine());
-            //AddEmployee();
+            AddEmployee();
             //UpdateEmployee();
-            GetEmployees();
+            //GetEmployees();
             GetDepts();
             Console.ReadLine();
         }
@@ -34,9 +34,9 @@ namespace EntityPractice
                     JoinDate = Convert.ToDateTime("04-05-1989"),
                     DepartmentID = 2
                 };
-                int Id = obj.AddEmployee(emp);
+                obj.AddEmployee_sp(emp);
                 Console.WriteLine("Added succesfully....");
-                Console.WriteLine(Id);
+                //Console.WriteLine(Id);
             }
             catch (Exception ex)
             {
