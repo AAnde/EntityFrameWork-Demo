@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DataAccess;
+using CodeFirst;
 
 namespace EntityPractice
 {
     class Program
     {
         public static EmployeeOperations obj = new EmployeeOperations();
+        public static EmpRepository empRepo = new EmpRepository();
 
         static void Main(string[] args)
         {
@@ -20,9 +22,11 @@ namespace EntityPractice
             //AddEmployee();
             //UpdateEmployee();
             //GetEmployees();
-            GetDepts();
+            //GetDepts();
+            GetEmployeesNew();
             Console.ReadLine();
         }
+        #region Schema First
         private static void AddEmployee()
         {
             try
@@ -96,5 +100,23 @@ namespace EntityPractice
                 }
             }
         }
+        #endregion
+        #region CodeFirst
+        private static void GetEmployeesNew()
+        {
+            List<EmployeeNew> emps = empRepo.GetEmployeeNew();
+            if (emps.Count == 0)
+            {
+                Console.WriteLine("No Employees");
+            }
+            else
+            {
+                foreach (EmployeeNew emp in emps)
+                {
+                    Console.WriteLine(emp.Name);
+                }
+            }
+        }
+        #endregion
     }
 }
