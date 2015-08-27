@@ -17,7 +17,7 @@ namespace EntityPractice
             Console.WriteLine("Main started...");
             //Console.WriteLine("Enter Id to delete a record...");
             //int id = Convert.ToInt32(Console.ReadLine());
-            AddEmployee();
+            //AddEmployee();
             //UpdateEmployee();
             //GetEmployees();
             GetDepts();
@@ -88,6 +88,12 @@ namespace EntityPractice
             foreach (Department dept in Departments)
             {
                 Console.WriteLine(string.Format("Department:{0}", dept.Name));
+                Console.WriteLine("Employees :");
+                
+                foreach (Employee emp in dept.Employees)
+                {
+                    Console.WriteLine(string.Format("Name:{0}",emp.Name));
+                }
             }
         }
     }
