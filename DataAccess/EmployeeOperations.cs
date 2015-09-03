@@ -50,9 +50,11 @@ namespace DataAccess
         }
         public List<Department> GetDepts()
         {
-            var empEntities = new EmployeeDBEntities();
-            List<Department> depts = empEntities.Departments.ToList();
-            return depts;
+            using (var empEntities = new EmployeeDBEntities())
+            {
+                List<Department> depts = empEntities.Departments.Include("Employees").ToList();
+                return depts;
+            }
         }
 
         public void AddEmployee_sp(EmpDTO Emp)

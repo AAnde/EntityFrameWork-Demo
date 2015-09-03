@@ -55,10 +55,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeFirst\CodeFirst.csproj">
-      <Project>{48c313ac-cbc8-4f7b-9533-fe7036a13f85}</Project>
-      <Name>CodeFirst</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{4b16a61a-c7a1-462d-9b3a-bf667ff65842}</Project>
       <Name>DataAccess</Name>
