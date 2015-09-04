@@ -11,18 +11,32 @@ namespace EntityPractice
     class Program
     {
         public static EmployeeOperations obj = new EmployeeOperations();
+        public static EntitySplittingDemo.EntityOperations splitObj = new EntitySplittingDemo.EntityOperations(); 
+        #region Main
         static void Main(string[] args)
         {
             Console.WriteLine("Main started...");
-            //Console.WriteLine("Enter Id to delete a record...");
-            //int id = Convert.ToInt32(Console.ReadLine());
-            //AddEmployee();
-            //UpdateEmployee();
-            //GetEmployees();
-            GetDepts();
+            try
+            {
+                //Console.WriteLine("Enter Id to delete a record...");
+                //int id = Convert.ToInt32(Console.ReadLine());
+                //AddEmployee();
+                //UpdateEmployee();
+                //GetEmployees();
+                //GetDepts();
+                DeleteEmp();
+                //GetEmp();
+                Console.WriteLine("Success");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.ReadLine();
         }
+        #endregion
         #region Schema First
+        #region EmpOperations
         private static void AddEmployee()
         {
             try
@@ -81,7 +95,8 @@ namespace EntityPractice
                 Console.WriteLine(string.Format("Name:{0},Salary:{1},JoinDate:{2}", emp.Name, emp.Salary, emp.JoinDate));
             }
         }
-
+        #endregion
+        #region DeptOperations
         private static void GetDepts()
         {
             List<Department> Departments = obj.GetDepts();
@@ -89,12 +104,51 @@ namespace EntityPractice
             {
                 Console.WriteLine(string.Format("Department:{0}", dept.Name));
                 Console.WriteLine("Employees :");
-                
+
                 foreach (Employee emp in dept.Employees)
                 {
-                    Console.WriteLine(string.Format("Name:{0}",emp.Name));
+                    Console.WriteLine(string.Format("Name:{0}", emp.Name));
                 }
             }
+        }
+        #endregion
+        #endregion
+        #region EntitySplitting
+        private static void GetEmp()
+        {
+            List<EntitySplittingDemo.Employee> emps = splitObj.GetEmployees();
+            foreach (EntitySplittingDemo.Employee employee in emps)
+            {
+                Console.WriteLine(employee.Name);
+            }
+        }
+        private static void AddEmp()
+        {
+            EntitySplittingDemo.Employee emp = new EntitySplittingDemo.Employee()
+            {
+                Id=2,
+                Name = "Bhaskar",
+                Salary = 10000,
+                MobileNo = "9885855600",
+                Location = "Hyderabad"
+            };
+            splitObj.AddEmployee(emp);
+        }
+        private static void UpdateEmp()
+        {
+            EntitySplittingDemo.Employee emp = new EntitySplittingDemo.Employee()
+            {
+                Id = 2,
+                Name = "Bhaskarr",
+                Salary = 20000,
+                MobileNo = "9885855600",
+                Location = "Hyderabadd"
+            };
+            splitObj.UpdateEmpolyee(emp);
+        }
+        private static void DeleteEmp()
+        {
+            splitObj.DeleteEmployee(2);
         }
         #endregion
     }
