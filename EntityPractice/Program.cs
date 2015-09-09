@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DataAccess;
-
 namespace EntityPractice
 {
     class Program
@@ -24,8 +23,9 @@ namespace EntityPractice
                 //UpdateEmployee();
                 //GetEmployees();
                 //GetDepts();
-                DeleteEmp();
-                //GetEmp();
+                //DeleteEmp();
+                ////GetEmp();
+                AddEmpsTableSplit();
                 Console.WriteLine("Success");
             }
             catch(Exception ex)
@@ -149,6 +149,29 @@ namespace EntityPractice
         private static void DeleteEmp()
         {
             splitObj.DeleteEmployee(2);
+        }
+        #endregion
+        #region TableSplitting
+        static void GetEmpsforTableSplit()
+        {
+            List<EntitySplittingDemo.EmployeeDetail> empDetails = splitObj.GetEmpTableSplit();
+            if(empDetails.Count !=0)
+            {
+
+            }
+        }
+        static void AddEmpsTableSplit()
+        {
+            EntitySplittingDemo.EmployeeDetail empDetails = new EntitySplittingDemo.EmployeeDetail()
+            {
+                Name="ashok",Salary=15000
+            };
+            empDetails.EmployeeContactDetail = new EntitySplittingDemo.EmployeeContactDetails()
+            {
+                MobileNo = "9550937878",
+                Location = "Hyderabad"
+            };
+            splitObj.AddEmpTableSplit(empDetails);
         }
         #endregion
     }

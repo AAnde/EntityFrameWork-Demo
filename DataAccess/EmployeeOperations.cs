@@ -9,6 +9,7 @@ namespace DataAccess
 {
     public class EmployeeOperations
     {
+        #region EntitySplitting Operations
         public int AddEmployee(EmpDTO Emp)
         {
             using (var empEntities = new EmployeeDBEntities())
@@ -86,6 +87,7 @@ namespace DataAccess
                 empEntities.SaveChanges();
             }
         }
-
+        #endregion
+        
     }
 }

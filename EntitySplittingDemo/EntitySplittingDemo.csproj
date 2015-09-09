@@ -51,6 +51,12 @@
     <Compile Include="Employee.cs">
       <DependentUpon>EntitySplitting.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeContactDetails.cs">
+      <DependentUpon>EntitySplitting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDetail.cs">
+      <DependentUpon>EntitySplitting.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityOperations.cs" />
     <Compile Include="EntitySplitting.Context.cs">
       <AutoGen>True</AutoGen>

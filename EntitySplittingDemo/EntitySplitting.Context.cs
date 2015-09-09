@@ -26,5 +26,7 @@ namespace EntitySplittingDemo
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeDetail> EmployeeDetails { get; set; }
+        public virtual DbSet<EmployeeContactDetails> EmployeeContactDetails { get; set; }
     }
 }
